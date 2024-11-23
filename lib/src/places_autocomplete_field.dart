@@ -36,7 +36,7 @@ class PlacesAutocompleteField extends StatefulWidget {
   /// by the decoration to save space for the labels), set the [decoration] to
   /// null.
   const PlacesAutocompleteField({
-    Key? key,
+    super.key,
     required this.apiKey,
     this.controller,
     this.leading,
@@ -59,7 +59,7 @@ class PlacesAutocompleteField extends StatefulWidget {
     this.overlayBorderRadius,
     this.textStyle,
     this.textStyleFormField,
-  }) : super(key: key);
+  });
 
   /// Controls the text being edited.
   ///
@@ -143,14 +143,12 @@ class PlacesAutocompleteField extends StatefulWidget {
   final TextStyle? textStyleFormField;
 
   @override
-  LocationAutocompleteFieldState createState() =>
-      LocationAutocompleteFieldState();
+  LocationAutocompleteFieldState createState() => LocationAutocompleteFieldState();
 }
 
 class LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
   TextEditingController? _controller;
-  TextEditingController? get _effectiveController =>
-      widget.controller ?? _controller;
+  TextEditingController? get _effectiveController => widget.controller ?? _controller;
 
   @override
   void initState() {
@@ -165,8 +163,7 @@ class LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
       widget.controller!.text = oldWidget.controller!.text;
     }
     if (widget.controller == null && oldWidget.controller != null) {
-      _controller =
-          TextEditingController.fromValue(oldWidget.controller!.value);
+      _controller = TextEditingController.fromValue(oldWidget.controller!.value);
     } else if (widget.controller != null && oldWidget.controller == null) {
       _controller = null;
     }
@@ -210,13 +207,11 @@ class LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
         ? Text(
             controller.text,
             softWrap: true,
-            style: widget.textStyleFormField ??
-                const TextStyle(color: Colors.black38),
+            style: widget.textStyleFormField ?? const TextStyle(color: Colors.black38),
           )
         : Text(
             widget.hint,
-            style: widget.textStyleFormField ??
-                const TextStyle(color: Colors.black38),
+            style: widget.textStyleFormField ?? const TextStyle(color: Colors.black38),
           );
 
     Widget child = Row(
@@ -239,7 +234,7 @@ class LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
                   ),
           )
         else
-          const SizedBox()
+          const SizedBox(),
       ],
     );
 
